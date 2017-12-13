@@ -1,0 +1,40 @@
+Maven command to create project
+
+mvn -B archetype:generate -DarchetypeGroupId=io.dropwizard.archetypes -DarchetypeArtifactId=java-simple -DarchetypeVersion=0.9.2 -DgroupId=com.jsanchezc.microservices -DartifactId=hola-dropwizard -Dversion=1.0 -Dname=HolaDropwizard
+
+
+Add exec-maven-plugin (it enables mvn exec:java)
+
+<plugin>
+ <groupId>org.codehaus.mojo</groupId>
+ <artifactId>exec-maven-plugin</artifactId>
+ <configuration>
+ <mainClass>
+ ${mainClass}<!-- it must be declared as property, otherwise you musrt type the main class-->
+ </mainClass>
+ <arguments>
+ <argument>server</argument>
+ </arguments>
+ </configuration>
+</plugin>
+
+
+COnfigurar agregar los endPoints a HolaDropwizardApplication.java
+
+
+@Override
+public void run(HolaDropwizardConfiguration configuration,
+ Environment environment) {
+ environment.jersey().register(new HolaRestResource());
+}
+
+
+properies files are set via .yml file
+// Enable variable substitution with environment variables in main class' initialize() method
+ bootstrap.setConfigurationSourceProvider(
+ new SubstitutingSourceProvider(
+ bootstrap.getConfigurationSourceProvider(),
+ new EnvironmentVariableSubstitutor(false)
+ )
+ );
+
