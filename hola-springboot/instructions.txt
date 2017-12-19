@@ -1,0 +1,16 @@
+After everything.
+
+JBoss Forge has some plug-ins for making it easy to quickly add the Maven plug-ins
+we need to use:
+$ cd hola-springboot
+$ forge
+
+#Now let’s install a JBoss Forge addon:
+$ addon-install --coordinate io.fabric8.forge:devops,2.2.148
+***SUCCESS*** Addon io.fa
+
+#Maven plug-ins:
+$ fabric8-setup
+***SUCCESS*** Added Fabric8 Maven support with base Docker image: fabric8/java-jboss-openjdk8-jdk:1.0.10. 
+Added the following Maven profiles [f8-build, f8-deploy, f8-local-deploy] to make building the project easier, e.g., mvn -Pf8-local-deploy
+
