@@ -1,0 +1,193 @@
+<metadata__cache__entry>
+  <version>5.2.0.0</version>
+  <connectorName>HTTP_Request_Configuration1</connectorName>
+  <metadataIo class="tree-map">
+    <entry>
+      <string>POST:/pages/{page_id}/incidents.json</string>
+      <map>
+        <entry>
+          <string>__default__</string>
+          <org.mule.tooling.metadata.cache.DefaultMetadataCacheEntry>
+            <input class="org.mule.common.metadata.DefaultMetaData">
+              <payload class="org.mule.tooling.metadata.api.TypeRefMetaDataModel">
+                <connectorName>HTTP_Request_Configuration1</connectorName>
+                <typeId>POST:/pages/{page_id}/incidents.json_request</typeId>
+                <category>DEFAULT</category>
+              </payload>
+              <properties class="tree-map">
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>RECORD</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+              </properties>
+            </input>
+            <output class="org.mule.common.metadata.DefaultMetaData">
+              <payload class="org.mule.common.metadata.DefaultUnknownMetaDataModel">
+                <dataType>UNKNOWN</dataType>
+                <metaDataModelPropertiesManager>
+                  <properties>
+                    <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty>
+                      <exampleContent>{
+&quot;backfilled&quot; : false,
+&quot;created_at&quot; : &quot;2013-04-21T13:07:16-06:00&quot;,
+&quot;id&quot; : &quot;21w20wsvz5kv&quot;,
+&quot;impact&quot; : &quot;minor&quot;,
+&quot;impact_override&quot; : null,
+&quot;incident_updates&quot; : [
+{
+&quot;body&quot; : &quot;We&apos;ve identified an issue with and are rolling back a recent code push that is causing slow API response times.&quot;,
+&quot;created_at&quot; : &quot;2013-04-21T13:07:17-06:00&quot;,
+&quot;display_at&quot; : &quot;2013-04-21T13:07:17-06:00&quot;,
+&quot;id&quot; : &quot;fbt48twx0lzh&quot;,
+&quot;incident_id&quot; : &quot;21w20wsvz5kv&quot;,
+&quot;status&quot; : &quot;identified&quot;,
+&quot;twitter_updated_at&quot; : null,
+&quot;updated_at&quot; : &quot;2013-04-21T13:07:17-06:00&quot;,
+&quot;wants_twitter_update&quot; : false
+}
+],
+&quot;monitoring_at&quot; : null,
+&quot;name&quot; : &quot;Slow API Response Times&quot;,
+&quot;page_id&quot; : &quot;jcm87b8scw0b&quot;,
+&quot;postmortem_body&quot; : null,
+&quot;postmortem_body_last_updated_at&quot; : null,
+&quot;postmortem_ignored&quot; : false,
+&quot;postmortem_notified_subscribers&quot; : false,
+&quot;postmortem_notified_twitter&quot; : false,
+&quot;postmortem_published_at&quot; : null,
+&quot;resolved_at&quot; : null,
+&quot;scheduled_auto_in_progress&quot; : false,
+&quot;scheduled_auto_completed&quot; : false,
+&quot;scheduled_for&quot; : null,
+&quot;scheduled_remind_prior&quot; : false,
+&quot;scheduled_reminded_at&quot; : null,
+&quot;scheduled_until&quot; : null,
+&quot;shortlink&quot; : &quot;http://j.mp/11AsbTS&quot;,
+&quot;status&quot; : &quot;identified&quot;,
+&quot;updated_at&quot; : &quot;2013-04-21T13:07:17-06:00&quot;,
+&quot;components&quot; : [
+{
+&quot;created_at&quot; : &quot;2014-01-18T01:15:08Z&quot;,
+&quot;description&quot; : null,
+&quot;id&quot; : &quot;4g812xxgm6ws&quot;,
+&quot;name&quot; : &quot;API&quot;,
+&quot;page_id&quot; : &quot;kz6x7zrrmrpk&quot;,
+&quot;position&quot; : 1,
+&quot;status&quot; : &quot;major_outage&quot;,
+&quot;updated_at&quot; : &quot;2014-01-18T01:15:12Z&quot;
+},
+{
+&quot;created_at&quot; : &quot;2014-01-18T01:15:08Z&quot;,
+&quot;description&quot; : null,
+&quot;id&quot; : &quot;gynp8g27p5xw&quot;,
+&quot;name&quot; : &quot;Management Portal&quot;,
+&quot;page_id&quot; : &quot;kz6x7zrrmrpk&quot;,
+&quot;position&quot; : 2,
+&quot;status&quot; : &quot;major_outage&quot;,
+&quot;updated_at&quot; : &quot;2014-01-18T01:15:12Z&quot;
+}
+]
+}</exampleContent>
+                    </org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty>
+                    <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+                      <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey">
+                        <id>POST:/pages/{page_id}/incidents.json_response</id>
+                        <displayName>POST:/pages/{page_id}/incidents.json_response</displayName>
+                        <category>DEFAULT</category>
+                        <metaDataKeyPropertiesManager>
+                          <properties>
+                            <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+                          </properties>
+                        </metaDataKeyPropertiesManager>
+                      </metaDataKey>
+                      <derivedStructure>false</derivedStructure>
+                      <generatedStructure>false</generatedStructure>
+                    </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+                  </properties>
+                </metaDataModelPropertiesManager>
+              </payload>
+              <properties class="tree-map">
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+                <entry>
+                  <org.mule.common.metadata.MetaDataPropertyScope>RECORD</org.mule.common.metadata.MetaDataPropertyScope>
+                  <org.mule.common.metadata.MetaDataProperties>
+                    <fields class="sorted-set">
+                      <comparator class="org.mule.common.metadata.MetaDataProperties$MetaDataFieldComparator"/>
+                    </fields>
+                  </org.mule.common.metadata.MetaDataProperties>
+                </entry>
+              </properties>
+            </output>
+          </org.mule.tooling.metadata.cache.DefaultMetadataCacheEntry>
+        </entry>
+      </map>
+    </entry>
+  </metadataIo>
+</metadata__cache__entry>

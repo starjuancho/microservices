@@ -1,0 +1,45 @@
+#%RAML 1.0
+baseUri: https://mocksvc.mulesoft.com/mocks/6ed7e79e-08c1-4d28-ac55-9a808111a80d # 
+title: Incidents-GetStarted
+version: v1
+description: This API aggregates DevOps related incidents across multiple platforms & services into single HTTP calls.
+
+/resolve:
+  put:
+    description: Resolves an existing incident in both PagerDuty and StatusPage
+    body:
+      application/json:
+        type: object
+        properties:
+          user:
+            type: object
+            required: true
+            properties: 
+              email: 
+                type: string
+                required: true
+          pagerDuty: 
+            type : object
+            required: true
+            properties:
+              incident_id:
+                type: string
+                required: true
+          statusPage:
+            type: object
+            required: true
+            properties:
+              incident_name:
+                type: string
+                required: true
+        example: {"user":{"email":"maxmule@mulesoft.com"},"pagerDuty":{"incident_id":"PUPSHS1"},"statusPage":{"incident_name":"bigServer"}}
+    responses: 
+      200:
+        description: Success
+        body: 
+          application/json:
+            type: object
+            properties: 
+              responses:
+                type: array
+            example: {"responses" : []}

@@ -1,0 +1,29 @@
+{
+	
+	$schema": "http://json-schema.org/draft-04/schema#",
+	
+	"definitions": {
+		"incident": {
+		"type": "object",
+		"properties": {
+			"user": {
+				"type": "object",
+				"properties": {
+					"email": {"type": "string"}
+				}
+			},
+			"pagerDuty": {
+				"type": "object",
+				"properties": {
+					"incident_id": { "type": "string" }
+				}
+			},
+			"statusPage": {
+				"type": "object",
+				"properties": {
+					"incident_name" : {"type" : "string" }
+				}
+			}
+		}
+	}
+}

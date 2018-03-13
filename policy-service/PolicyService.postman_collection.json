@@ -1,0 +1,31 @@
+{
+	"info": {
+		"name": "PolicyService",
+		"_postman_id": "efa454c9-2589-73f8-a4fb-4f68d5826e7e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetPolicy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9090/policy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"policy"
+					]
+				},
+				"description": "Get a Policy Summary"
+			},
+			"response": []
+		}
+	]
+}

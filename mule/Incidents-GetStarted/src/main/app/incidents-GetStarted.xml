@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw"
+	xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
+	<http:listener-config name="incidents-GetStarted-httpListenerConfig"
+		host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration" />
+	<apikit:config name="incidents-GetStarted-config" raml="incidents-GetStarted.raml"
+		consoleEnabled="false" doc:name="Router" />
+	<http:request-config name="HTTP_Request_PagerDuty_Conf"
+		protocol="HTTPS" host="mocksvc.mulesoft.com" port="443"
+		basePath="/mocks/8a984e97-28aa-4769-b69a-0eeb890d2949" doc:name="HTTP Request Configuration">
+        <http:raml-api-configuration location="https://anypoint.mulesoft.com/exchange/api/v1/organizations/66f3e47d-8ade-4d2a-b7aa-1377c60d3889/assets/66f3e47d-8ade-4d2a-b7aa-1377c60d3889/pagerduty-api/1.0.3/api/root"/>
+	</http:request-config>
+    <http:request-config name="HTTP_Request_StatusPageConfig" protocol="HTTPS" host="mocksvc.mulesoft.com" port="443" basePath="/mocks/822491a6-4921-47c1-bf9c-253f8e4d88e7" doc:name="HTTP Request Configuration"/>
+
+	<flow name="incidents-GetStarted-main">
+		<http:listener config-ref="incidents-GetStarted-httpListenerConfig"
+			path="/api/*" doc:name="HTTP" />
+		<apikit:router config-ref="incidents-GetStarted-config"
+			doc:name="APIkit Router" />
+		<exception-strategy
+			ref="incidents-GetStarted-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy" />
+	</flow>
+	<flow name="incidents-GetStarted-console">
+		<http:listener config-ref="incidents-GetStarted-httpListenerConfig"
+			path="/console/*" doc:name="HTTP" />
+		<apikit:console config-ref="incidents-GetStarted-config"
+			doc:name="APIkit Console" />
+	</flow>
+	<flow name="put:/resolve:application/json:incidents-GetStarted-config">
+        <byte-array-to-object-transformer ignoreBadInput="true" doc:name="Byte Array to Object" metadata:id="ec3aefd0-8683-4e6f-90ed-bc2d81736deb"/>
+        <scatter-gather doc:name="Scatter-Gather" metadata:id="ddb7ae0a-f3bb-4fc4-bced-846e4b2c71d4">
+            <flow-ref name="PagerDutyFlow" doc:name="PagerDutyFlow" metadata:id="3241adb3-dd97-4e75-a054-3a5194ecb6a2"/>
+            <flow-ref name="StatusPagerFlow" doc:name="StatusPagerFlow" metadata:id="d4b336bd-71fb-4c33-951d-ad10a1d48a86"/>
+        </scatter-gather>
+        <dw:transform-message doc:name="Transform Message">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	responses: payload
+}]]></dw:set-payload>
+        </dw:transform-message>
+
+	</flow>
+    <flow name="PagerDutyFlow">
+        <dw:transform-message doc:name="Transform Message" metadata:id="76c02221-3223-4bae-ad57-de48a5349bc9">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	id: payload.pagerDuty.incident_id,
+	requester_id: payload.user.email
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <http:request config-ref="HTTP_Request_PagerDuty_Conf" path="/resolve" method="PUT" doc:name="HTTP PagerDuty">
+            <http:request-builder>
+                <http:header headerName="Content-Type" value="application/json"/>
+            </http:request-builder>
+        </http:request>
+    </flow>
+    <flow name="StatusPagerFlow">
+        <dw:transform-message doc:name="Transform Message" metadata:id="9f300520-b785-4e68-b7ae-5cf0ead492a3">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	incident: {
+		name: payload.statusPage.incident_name,
+		component_ids: "14qjfyw293hm",
+		impact_override: null,
+		message: "Finished",
+		status: "resolved",
+		wants_twitter_update: false
+		
+		}
+}
+]]></dw:set-payload>
+
+        </dw:transform-message>
+        <http:request config-ref="HTTP_Request_StatusPageConfig" path="/pages/{page_id}/incidents.json" method="POST" doc:name="HTTP">
+            <http:request-builder>
+                <http:uri-param paramName="page_id" value="anything"/>
+                <http:header headerName="Content-Type" value="application/json"/>
+            </http:request-builder>
+        </http:request>
+
+    </flow>
+	<apikit:mapping-exception-strategy
+		name="incidents-GetStarted-apiKitGlobalExceptionMapping">
+		<apikit:mapping statusCode="404">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.NotFoundException" />
+			<set-property propertyName="Content-Type" value="application/json"
+				doc:name="Property" />
+			<set-payload
+				value="{ &quot;message&quot;: &quot;Resource not found&quot; }"
+				doc:name="Set Payload" />
+		</apikit:mapping>
+		<apikit:mapping statusCode="405">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.MethodNotAllowedException" />
+			<set-property propertyName="Content-Type" value="application/json"
+				doc:name="Property" />
+			<set-payload
+				value="{ &quot;message&quot;: &quot;Method not allowed&quot; }"
+				doc:name="Set Payload" />
+		</apikit:mapping>
+		<apikit:mapping statusCode="415">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.UnsupportedMediaTypeException" />
+			<set-property propertyName="Content-Type" value="application/json"
+				doc:name="Property" />
+			<set-payload
+				value="{ &quot;message&quot;: &quot;Unsupported media type&quot; }"
+				doc:name="Set Payload" />
+		</apikit:mapping>
+		<apikit:mapping statusCode="406">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.NotAcceptableException" />
+			<set-property propertyName="Content-Type" value="application/json"
+				doc:name="Property" />
+			<set-payload value="{ &quot;message&quot;: &quot;Not acceptable&quot; }"
+				doc:name="Set Payload" />
+		</apikit:mapping>
+		<apikit:mapping statusCode="400">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.BadRequestException" />
+			<set-property propertyName="Content-Type" value="application/json"
+				doc:name="Property" />
+			<set-payload value="{ &quot;message&quot;: &quot;Bad request&quot; }"
+				doc:name="Set Payload" />
+		</apikit:mapping>
+	</apikit:mapping-exception-strategy>
+</mule>

@@ -1,0 +1,39 @@
+
+  transaction:
+    description: The id of a transaction
+    properties:
+      transaction_id: string
+    example: {"transaction_id": u09d35l13asñalm}
+
+  transaction_detail:
+    description: the detail of a transaction, including the id, type of transactin, datetime, type, currency and amount
+    properties:
+      transaction_id: string
+      transaction_type: transaction_type
+      created: 
+        type: datetime-only
+        required: false
+      currency: currency
+      amount: number
+  example: |
+      {"transaction_id": "u09d35l13asñalm",  "transaction_type": "debit", "created": "2016-02-28T16:41:41.090Z","currency": "MXN", "amount": 23131.213       }
+
+  currency:
+    description: The currency
+    enum: [USD, MXN]
+
+  transaction_type:
+    description: whether the transaction is credit or debit
+    enum: [debit,credit]
+
+  error: 
+    description: Error
+    properties:
+      description: string
+    example: {"description": "Error no se pudo insertar porque...."}
+
+
+"#%RAML 1.0
+#title: my object types
+#types: 
+  

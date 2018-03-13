@@ -1,0 +1,10 @@
+{
+  "incident": {
+    "name": "string",
+    "status": "string",
+    "message": "string",
+    "wants_twitter_update": "boolean",
+    "impact_override": "string",
+    "component_ids": "string"
+  }
+}

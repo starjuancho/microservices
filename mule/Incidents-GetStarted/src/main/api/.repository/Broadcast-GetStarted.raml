@@ -1,0 +1,26 @@
+#%RAML 1.0
+title: Broadcast-GetStarted
+version: v1
+description: This API aggregates DevOps related incidents across multiple platforms & services into single HTTP calls.
+
+/post:
+  post:
+    description: Sends a message out via social media
+    body: 
+      application/json:
+        type: object
+        properties: 
+          message:
+            type: string
+            required: true
+        example: {"message":"dlroW olleH"}
+    responses: 
+      200:
+        description: Success
+        body: 
+          application/json:
+            type: object
+            properties: 
+              responses:
+                type: array
+            example: {"responses" : []}

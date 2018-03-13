@@ -1,0 +1,17 @@
+{
+    "inputMessageMetadata": {},
+    "outputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "statuspage"
+        },
+        "flowVariables": {
+            "page_id": {
+                "connectorName": "#_custom_mule_metadata_type_#",
+                "typeId": "page_id"
+            }
+        }
+    },
+    "id": "9f300520-b785-4e68-b7ae-5cf0ead492a3",
+    "version": "5.2.0.0"
+}

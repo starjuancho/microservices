@@ -32,3 +32,9 @@ hs_err_pid*
 
 #tern plugin
 .tern-project
+/build/
+
+#maven files
+**/.mvn
+**/mvnw
+**/mvnw.*

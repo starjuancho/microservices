@@ -1,0 +1,40 @@
+#%RAML 1.0
+baseUri: https://mocksvc.mulesoft.com/mocks/a0cb1592-3b0a-466e-a32f-68c948197205 # 
+title: TransactionsSAPI
+types: !include transaction_objects.raml
+description: This System API provides services to interact with Fullfillment system via RabbitMQ
+
+  
+
+/transaction:
+  description: manage the transaction specified by the account_id, between a start_date and end_date
+
+  post:
+    description: Adds a new transasction
+    body: 
+      application/json:
+        type: transaction_detail
+        required: true
+          
+    responses: 
+      200: 
+        body: 
+          application/json:
+            type: transaction
+      400:
+        body: 
+          application/json:
+            type: error
+      
+  get:
+    description: returns the transaction detail
+    queryParameters: 
+      id_transaction: 
+        type: string
+        required: true 
+    responses: 
+      200:
+        body: 
+          application/json: 
+            type: [transaction_detail]
+      

@@ -1,0 +1,11 @@
+{
+    "inputMessageMetadata": {},
+    "outputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "HTTP_Request_PagerDuty",
+            "typeId": "PUT:/resolve_request"
+        }
+    },
+    "id": "76c02221-3223-4bae-ad57-de48a5349bc9",
+    "version": "5.2.0.0"
+}

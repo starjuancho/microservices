@@ -1,0 +1,11 @@
+{
+    "inputMessageMetadata": {},
+    "outputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "incidenta-GetStartedRequest"
+        }
+    },
+    "id": "ddb7ae0a-f3bb-4fc4-bced-846e4b2c71d4",
+    "version": "5.2.0.0"
+}

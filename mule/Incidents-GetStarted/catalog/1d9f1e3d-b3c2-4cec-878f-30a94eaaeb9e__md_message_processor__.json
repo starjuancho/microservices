@@ -1,0 +1,11 @@
+{
+    "inputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "HTTP_Request_StatusPager",
+            "typeId": "POST:/pages/{page_id}/incidents.json_request"
+        }
+    },
+    "outputMessageMetadata": {},
+    "id": "1d9f1e3d-b3c2-4cec-878f-30a94eaaeb9e",
+    "version": "5.2.0.0"
+}
